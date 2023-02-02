@@ -23,7 +23,7 @@ drawings:
 
 # Frontend Debugging
 
-Tobias Bester | EPI-USE Labs | 2023 | frontend-debugging-presentation-labs.vercel.app
+Tobias Bester | EPI-USE Labs | 2023 | frontend-debugging-presentation-sovp.vercel.app/
 
 <div class="abs-br m-6 flex gap-2">
   <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
