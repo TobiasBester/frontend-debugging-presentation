@@ -394,8 +394,8 @@ image: /dom.jpg
 # Frontend can be frustrating 😡...
 
 <div class="flex justify-between">
-  <img src="/mario.jfif" alt="Mario" style="max-width: 40%" />
-  <img src="/others-harm.jfif" alt="AmPsycho" style="max-width: 40%;" />
+  <img src="/mario.png" alt="Mario" style="max-width: 40%" />
+  <img src="/others-harm.png" alt="AmPsycho" style="max-width: 40%;" />
 </div>
 
 ---
