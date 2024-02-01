@@ -23,7 +23,7 @@ drawings:
 
 # Frontend Debugging
 
-Tobias Bester | EPI-USE Labs | 2023 | frontend-debugging-presentation-sovp.vercel.app/
+Tobias Bester | EPI-USE Labs | 2024 | frontend-debugging-presentation-sovp.vercel.app/
 
 <div class="abs-br m-6 flex gap-2">
   <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
@@ -162,6 +162,7 @@ console.log('Answer at', Date.now(), 'is', myData.answer)
 
 - #### `.assert()`
 - #### Avoid adding if-statement
+- #### Like a conditional breakpoint
 
 <br />
 
@@ -175,17 +176,11 @@ console.assert(data.id, 'ID does not exist')
 
 ---
 
-- 1x Toothpaste
-- 1l Milk
-- 30 Spaghetti
-- 2x Oros
-
----
-
 # `console` methods
 
 - #### `.count()`
 - #### Avoid adding counter variable
+- #### Use label parameter to manage multiple counters
 
 <br />
 
@@ -262,11 +257,12 @@ console.table(people);
 
 ```javascript
 const complexProcess = (n) => 1 + 1 * n
+const request = async () => await fetch('https://www.boredapi.com/api/activity')
 console.time()
 complexProcess(1)
 console.timeLog()
 complexProcess(2)
-console.timeEnd()
+console.timeEnd()   // logs again
 ```
 
 ---
@@ -363,7 +359,13 @@ image: /dom.jpg
 <div v-click="2">
 
 - Simulate slow/no internet
-- Make requests from simulated device using custom user agent
+- Make requests from simulated device using custom user agent...
+
+</div>
+
+<div v-click="3">
+
+- Or just simulate a device's screen size by using the device toolbar
 
 </div>
 
@@ -391,17 +393,6 @@ image: /dom.jpg
 
 ---
 
-# Frontend can be frustrating 😡...
+# Final Words
 
-<div class="flex justify-between">
-  <img src="/mario.png" alt="Mario" style="max-width: 40%" />
-  <img src="/others-harm.png" alt="AmPsycho" style="max-width: 40%;" />
-</div>
-
----
-
-# But if you're not using the right tools, there's only one person to blame 😊
-
-<div class="flex justify-center">
-  <img src="/thee.png" alt="Thee" style="max-width: 40%;" />
-</div>
+- Don't worry about learning these tools. You won't need them, you perfect coders 🙏
