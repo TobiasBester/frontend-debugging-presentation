@@ -23,7 +23,7 @@ drawings:
 
 # Frontend Debugging
 
-Tobias Bester | EPI-USE Labs | 2024 | frontend-debugging-presentation-sovp.vercel.app/
+Tobias Bester | EPI-USE Labs | 2025 | frontend-debugging-presentation-sovp.vercel.app/
 
 <div class="abs-br m-6 flex gap-2">
   <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
@@ -49,7 +49,7 @@ layout: image-right
 image: https://images.unsplash.com/photo-1518737743670-3f217c4def4a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2680&q=80
 ---
 
-# Why would we debug browser code? 🤷‍♂️
+# Why would we debug browser code? 🤔
 
 #### _When we get unexpected results for a test case..._
   - 🗺 Incorrect page layout
@@ -73,15 +73,9 @@ Photo by <a href="https://unsplash.com/@shocking57?utm_source=unsplash&utm_mediu
 
 # The tools for the job 🔨
 
-- #### Event handling issues - JS - Logging and stepping through code
-- #### Visual inconsistencies and errors - HTML and CSS - DOM and CSS inspector
-- #### Incorrect data - JS and API - Network and state inspector
-
-<br />
-
 <div v-click="1">
 
-#### Find all these tools in one place...
+- #### Event handling issues - JS - Logging and stepping through code
 
 </div>
 
@@ -89,9 +83,33 @@ Photo by <a href="https://unsplash.com/@shocking57?utm_source=unsplash&utm_mediu
 
 <div v-click="2">
 
+- #### Visual inconsistencies and errors - HTML and CSS - DOM and CSS inspector
+
+</div>
+
+<br />
+
+<div v-click="3">
+
+- #### Incorrect data - JS and API - Network and state inspector
+
+</div>
+
+<br />
+
+<div v-click="4">
+
+#### Find all these tools in one place...
+
+</div>
+
+<br />
+
+<div v-click="5">
+
 ### ✨Your Favorite Browser! [F12]✨
 
-<img src="/dog-piano.png" style="max-width: 30%;" alt="Dog playing piano" />
+<img src="/browser.png" style="max-width: 30%;" alt="Dog playing piano" />
 
 </div>
 
@@ -123,6 +141,7 @@ Photo by <a href="https://unsplash.com/@shocking57?utm_source=unsplash&utm_mediu
 
 - #### `.log()`
 - #### Accepts array of strings - concatenates with spaces
+- #### Accepts string substitutions
 
 <br />
 
@@ -135,6 +154,13 @@ console.log(`Answer at ${Date.now()} is ${myData.answer}`)
 
 // Auto concatenation + variables aren't called with .toString()
 console.log('Answer at', Date.now(), 'is', myData.answer)
+
+// Substitution-based string can be useful if parameter identifiers are long
+console.log('Answer at %d is %s', Date.now(), myData.answer)
+
+// Use %c to apply CSS to text appearing after the symbol
+console.log('Answer at %d is %cERROR', Date.now(), 'color: red')
+
 ```
 
 </div>
@@ -156,6 +182,18 @@ console.log('Answer at', Date.now(), 'is', myData.answer)
 
 </div>
 
+<div v-click="2">
+
+```javascript
+console.log('Default')
+console.info('Info')
+console.warn('Warn')
+console.debug('Debug')
+console.error('Error')
+```
+
+</div>
+
 ---
 
 # `console` methods
@@ -167,11 +205,37 @@ console.log('Answer at', Date.now(), 'is', myData.answer)
 <br />
 
 ```javascript
-const withinLimit = false
-console.assert(withinLimit, 'Is not within limit!')
+const sumsIncorrectly = 5 + 3 === 10
+const sumsCorrectly = 5 + 5 === 10
+console.assert(sumsIncorrectly, 'Sum is not correct!')
+console.assert(sumsCorrectly, 'Sum is not correct!')
 
 const data = { name: 'Bot', id: null }
 console.assert(data.id, 'ID does not exist')
+```
+
+---
+
+# `console` methods
+
+- #### `.trace()`
+- #### Logs the stack trace from where the method is called
+
+```javascript
+const functionA = () => {
+  functionB()
+}
+const functionB = () => {
+  functionC()
+}
+const functionC = () => {
+  console.trace('I am inside functionC')
+}
+const main = () => {
+  functionA()
+}
+
+main()
 ```
 
 ---
@@ -257,13 +321,48 @@ console.table(people);
 
 ```javascript
 const complexProcess = (n) => 1 + 1 * n
-const request = async () => await fetch('https://www.boredapi.com/api/activity')
+const request = async () => await fetch('https://qa.logbox.co.za/lookup/countries')
 console.time()
 complexProcess(1)
 console.timeLog()
+await request()
 complexProcess(2)
 console.timeEnd()   // logs again
 ```
+
+---
+
+# `console` methods
+
+- #### `.profile()`
+- #### Activate browser profiler to measure performance metrics
+- #### Use Performance tab to see detailed recording of memory, loading times, and call stack
+
+<br />
+
+```javascript
+const complexProcess = (n) => 1 + 1 * n
+const request = async () => await fetch('https://qa.logbox.co.za/lookup/countries')
+console.profile('complex steps')
+complexProcess(1)
+await request()
+complexProcess(2)
+console.profileEnd('complex steps')
+```
+
+---
+
+# Progress report
+
+- #### Event handling issues - JS
+  - Logging [✅]
+  - Stepping through code
+- #### Visual inconsistencies and errors - HTML and CSS
+  - DOM inspector
+  - CSS inspector
+- #### Incorrect data - JS and API
+  - Network inspector
+  - State inspector
 
 ---
 
@@ -276,16 +375,15 @@ console.timeEnd()   // logs again
 
 <div v-click="1">
 
-- Add breakpoints and on pause:
-  - Resume with F8
-  - Step to next line with F10
-
+- Ctrl+O/Ctrl+P to file search
+- Ctrl+Shift+F to global text search
 </div>
 
 <div v-click="2">
 
-- Ctrl+O/Ctrl+P to file search
-- Ctrl+Shift+F to global text search
+- Add breakpoints and on pause:
+  - Resume with F8
+  - Step to next line with F10
 
 </div>
 
@@ -296,6 +394,20 @@ console.timeEnd()   // logs again
 </div>
 
 ---
+
+# Progress report
+
+- #### Event handling issues - JS
+  - Logging [✅]
+  - Stepping through code [✅]
+- #### Visual inconsistencies and errors - HTML and CSS
+  - DOM inspector
+  - CSS inspector
+- #### Incorrect data - JS and API
+  - Network inspector
+  - State inspector
+
+---
 layout: image-right
 image: /dom.jpg
 ---
@@ -304,6 +416,9 @@ image: /dom.jpg
 
 - Elements Tab
 - Inspect DOM and CSS
+
+<div v-click="1">
+
 - Ctrl+Shift+C to target element
 - For an element, you can:
   - Add and edit attributes
@@ -311,6 +426,8 @@ image: /dom.jpg
   - Copy XPath, Selector
   - Edit element state (hidden, focus, hover)
   - Add a breakpoint
+
+</div>
 
 ---
 
@@ -321,21 +438,32 @@ image: /dom.jpg
   - Update styles
   - Add and remove classes from element
   - More element state options
+  - View and edit flexbox and grid
 
 <div v-click="1">
 
-- Layout Inspector
-  - Edit margin and padding - see applied styles
-  - View and edit flexbox and grid
+- Other Element tabs
+  - Computed properties
+  - Flexbox and grid layout properties
+  - Event listeners on a DOM object
+  - Javascript properties on a DOM object
+  - Accessibility: Properties important for screen readers
 
 </div>
 
-<div v-click="2">
+---
 
-- Element properties
-- Accessibility
+# Progress report
 
-</div>
+- #### Event handling issues - JS
+  - Logging [✅]
+  - Stepping through code [✅]
+- #### Visual inconsistencies and errors - HTML and CSS
+  - DOM inspector [✅]
+  - CSS inspector [✅]
+- #### Incorrect data - JS and API
+  - Network inspector
+  - State inspector
 
 ---
 
@@ -350,20 +478,26 @@ image: /dom.jpg
 <div v-click="1">
 
 - For individual requests, you can:
-  - View request and response headers
-  - View request [Payload] and response [Preview] data
-  - Replay request
+  - View request [Payload] and response [Preview] data and [Headers]
+  - Replay requests
+  - See what initiated a request
 
 </div>
 
 <div v-click="2">
+
+- Add URL-based breakpoint in Sources tab
+
+</div>
+
+<div v-click="3">
 
 - Simulate slow/no internet
 - Make requests from simulated device using custom user agent...
 
 </div>
 
-<div v-click="3">
+<div v-click="4">
 
 - Or just simulate a device's screen size by using the device toolbar
 
@@ -388,6 +522,8 @@ image: /dom.jpg
   - Timeline Tab: View component events to check what data your component emits
   - Routes Tab: Interactive version of `/router/index.ts`
   - Pinia/Vuex Tab: Inspect and edit store data
+
+- [React DevTools](https://react.dev/learn/react-developer-tools)
 
 </div>
 
