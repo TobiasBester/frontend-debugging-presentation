@@ -6,10 +6,16 @@
     "export": "slidev export"
   },
   "dependencies": {
-    "@slidev/cli": "^0.27.20",
+    "@slidev/cli": "^52.15.1",
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*",
-    "playwright-chromium": "^1.30.0"
+    "playwright-chromium": "^1.59.1"
+  },
+  "engines": {
+    "node": ">=20.12.0"
+  },
+  "overrides": {
+    "dompurify": "^3.4.2"
   },
   "name": "frontend-debugging"
 }
